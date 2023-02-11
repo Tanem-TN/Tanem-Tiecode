@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.tiecodeluntan.MagicIndicatorTool.CommonNavigatorTool;
 import com.example.tiecodeluntan.MagicIndicatorTool.ViewPagerHelperTool;
+import com.example.tiecodeluntan.MainActivity;
 import com.example.tiecodeluntan.R;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -24,6 +25,26 @@ class PagerHolderToolTwo extends RecyclerView.ViewHolder {
         PagerAdapterTwo PagerAdapterTwo = new PagerAdapterTwo(mContext);
         Pager1 = itemView.findViewById(R.id.pager2);
         Pager1.setAdapter(PagerAdapterTwo);
+        Pager1.setUserInputEnabled(true);
+        Setindicator(mContext);
+        Slidingmonitor();
+    }
+    //解决滑动
+    public void Slidingmonitor(){
+        Pager1.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                if (position == Pager1.getAdapter().getItemCount()-1)  {
+                    MainActivity.setUserInputEnabled(true);
+                }else {
+                    MainActivity.setUserInputEnabled(false);
+                }
+            }
+        });
+
+    }
+    //设置指示器
+    public  void Setindicator(Context mContext){
         ArrayList<String> AAr = new ArrayList<>();
         AAr.add("首页");
         AAr.add("精选");
