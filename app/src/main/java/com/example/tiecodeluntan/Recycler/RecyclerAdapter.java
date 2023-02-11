@@ -33,7 +33,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 99;
     }
     public static class RecyclerViewHolderTool extends RecyclerView.ViewHolder {
         TextView Texe;

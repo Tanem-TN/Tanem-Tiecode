@@ -1,6 +1,11 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.Tiecode论坛" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--        <item name="android:windowLightStatusBar">true</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+        <!--&lt;!&ndash;        <item name="android:navigationBarColor">#00000000</item>&ndash;&gt;-->
+        <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--&lt;!&ndash;        <item name="android:windowTranslucentStatus">false</item>&ndash;&gt;-->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -27,5 +32,6 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+
     </style>
 </resources>

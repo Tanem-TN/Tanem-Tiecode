@@ -18,6 +18,7 @@ public class RecyclerHolderTool extends RecyclerView.ViewHolder{
     RecyclerAdapter Adapter;
     public RecyclerHolderTool(@NonNull View itemView, Context mContext) {
         super(itemView);
+
         ArrayList<String> aar = new ArrayList<>();
         aar.add("666");
         aar.add("666");
@@ -30,5 +31,29 @@ public class RecyclerHolderTool extends RecyclerView.ViewHolder{
         Recycler = itemView.findViewById(R.id.Recycler1);
         Recycler.setAdapter(Adapter);
         Recycler.setLayoutManager(layoutManager);
+        Recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // RecyclerView停止滑动
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    // RecyclerView正在被拖拽滑动
+                } else if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
+                    // RecyclerView正在惯性滑动
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    MainActivity.performHide();
+                } else if (dy < 0) {
+                    MainActivity.performShow();
+                }
+            }
+        });
+
     }
 }

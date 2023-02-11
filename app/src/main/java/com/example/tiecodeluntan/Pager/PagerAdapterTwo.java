@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class PagerAdapterTwo extends RecyclerView.Adapter {
 
         private Context mContext;
-        private int size = 1;
+        private int size = 2;
         public PagerAdapterTwo(Context mContext){
         }
 

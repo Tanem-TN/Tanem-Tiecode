@@ -7,32 +7,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.tiecodeluntan.MagicIndicatorTool.CommonNavigatorTool;
-import com.example.tiecodeluntan.MagicIndicatorTool.ViewPagerHelperTool;
 import com.example.tiecodeluntan.R;
-
-import net.lucode.hackware.magicindicator.MagicIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
-
-import java.util.ArrayList;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 class PagerHolderToolTwo extends RecyclerView.ViewHolder {
     static ViewPager2 Pager1;
-    MagicIndicator MagicIndicator;
+    static TabLayout tabLayout;
+
     PagerHolderToolTwo(@NonNull View itemView, Context mContext) {
         super(itemView);
         PagerAdapterTwo PagerAdapterTwo = new PagerAdapterTwo(mContext);
         Pager1 = itemView.findViewById(R.id.pager2);
         Pager1.setAdapter(PagerAdapterTwo);
-        ArrayList<String> AAr = new ArrayList<>();
-        AAr.add("首页");
-        AAr.add("精选");
-        MagicIndicator = itemView.findViewById(R.id.magic_indicator);
-        CommonNavigator commonNavigator = new CommonNavigator(mContext);
-        CommonNavigatorTool CommonNavigatorTool = new CommonNavigatorTool(Pager1,AAr);
-        commonNavigator.setAdapter(CommonNavigatorTool);
-        MagicIndicator.setNavigator(commonNavigator);
-        ViewPagerHelperTool.bind(MagicIndicator,Pager1);
+        Pager1.setUserInputEnabled(true);
+        tabLayout = itemView.findViewById(R.id.tab_layout);
+        Setindicator(mContext);
+    }
+
+    //设置指示器
+    public void Setindicator(Context mContext) {
+        new TabLayoutMediator(tabLayout, Pager1, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText("首页");
+                    break;
+                default:
+                    tab.setText("精选");
+            }
+        }).attach();
     }
 
 }

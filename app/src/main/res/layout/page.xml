@@ -30,20 +30,31 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
                 app:layout_collapseMode="pin">
 
-                <net.lucode.hackware.magicindicator.MagicIndicator
-                    android:id="@+id/magic_indicator"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="#00FF0000"
+                    app:tabMode="scrollable"
+                    >
+                </com.google.android.material.tabs.TabLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager2"
+        <com.example.tiecodeluntan.kt.NestedScrollableHost
             android:layout_width="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_height="match_parent">
-        </androidx.viewpager2.widget.ViewPager2>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.viewpager2.widget.ViewPager2>
+        </com.example.tiecodeluntan.kt.NestedScrollableHost>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
