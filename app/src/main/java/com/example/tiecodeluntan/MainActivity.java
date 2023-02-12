@@ -1,5 +1,6 @@
 package com.example.tiecodeluntan;
 
+import android.annotation.SuppressLint;
 import android.database.CursorJoiner;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.tiecodeluntan.Pager.PagerAdapter;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class MainActivity extends AppCompatActivity {
     public static BottomAppBar bottBar;
     public static ViewPager2 vPager;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Pager() {
-        RecyclerView.Adapter PagerAdapter = new PagerAdapter(this);
+        PagerAdapter PagerAdapter = new PagerAdapter(this);
         vPager.setAdapter(PagerAdapter);
 
     }
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         bottBar.performShow();
     }
 
+    @SuppressLint("NonConstantResourceId")
     public static void setOnItemSelectedListener() {
         bottomAppBar1.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -74,22 +77,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void 导航栏颜色(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			this.getWindow().setNavigationBarColor(00000000);
-        }
+        this.getWindow().setNavigationBarColor(0x00000000);
     }
     public void 状态栏颜色(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			this.getWindow().setStatusBarColor(0x00000000);
-        }
+        this.getWindow().setStatusBarColor(0x00000000);
     }
     public void 状态栏字体黑色(boolean 是否黑色){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (是否黑色 == true) {
-				this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            } else {
-				this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-            }
+        if (是否黑色) {
+            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         }
     }
     public void 沉浸模式(){
