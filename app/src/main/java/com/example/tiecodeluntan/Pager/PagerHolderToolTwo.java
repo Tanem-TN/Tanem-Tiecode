@@ -2,11 +2,13 @@ package com.example.tiecodeluntan.Pager;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.tiecodeluntan.MainActivity;
 import com.example.tiecodeluntan.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -14,6 +16,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 class PagerHolderToolTwo extends RecyclerView.ViewHolder {
     static ViewPager2 Pager1;
     static TabLayout tabLayout;
+
+    LinearLayout 线性布局1;
 
     PagerHolderToolTwo(@NonNull View itemView, Context mContext) {
         super(itemView);
@@ -23,6 +27,8 @@ class PagerHolderToolTwo extends RecyclerView.ViewHolder {
         Pager1.setUserInputEnabled(true);
         tabLayout = itemView.findViewById(R.id.tab_layout);
         Setindicator(mContext);
+        线性布局1 = itemView.findViewById(R.id.高度);
+        MainActivity.设置布局高度(线性布局1,MainActivity.取状态栏高度(mContext));
     }
 
     //设置指示器

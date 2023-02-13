@@ -6,31 +6,90 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/Theme.Tiecode论坛"
+        style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        app:strokeWidth="0dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/textView2"
+
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintEnd_toStartOf="@+id/用户名"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/dataset"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/用户名"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"
                 android:text="TextView"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/发布时间"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="TextView"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/用户名"
+                tools:ignore="HardcodedText,SmallSp" />
+
+            <TextView
+                android:id="@+id/帖子标题"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/帖子摘要"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/帖子标题"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

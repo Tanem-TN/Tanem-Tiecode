@@ -1,15 +1,14 @@
 package com.example.tiecodeluntan;
 
 import android.annotation.SuppressLint;
-import android.database.CursorJoiner;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.tiecodeluntan.Pager.PagerAdapter;
@@ -66,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.action_settings:
                     vPager.setCurrentItem(2);
                     return true;
+                case R.id.action_chat:
+                    vPager.setCurrentItem(3);
+                    return true;
             }
             return false;
         });
@@ -94,14 +96,27 @@ public class MainActivity extends AppCompatActivity {
         导航栏颜色();
         状态栏颜色();
     }
+    public static int 取状态栏高度(Context mContext){
+        if (Build.VERSION.SDK_INT < 29) {
+            try {
+                @SuppressLint("PrivateApi") Class<?> c = Class.forName("com.android.internal.R$dimen");
+                return mContext.getResources().getDimensionPixelSize(Integer.parseInt(c.getField("status_bar_height").get(c.newInstance()).toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0;
+            }
+        } else {
+            Resources resources = mContext.getResources();
+            return resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"));
+        }
+    }
+    public static void 设置布局高度(View view,int 高度){
+
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        if (params == null) {
+            return;
+        }
+        params.height = 高度;
+        view.setLayoutParams(params);
+    }
 }
-//    HTTP htpp = HTTP.builder().build();
-//            htpp.async("http://101.33.227.148:80/api")
-//                    .bodyType("application/json; charset=utf-8")
-//                    .addHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78")
-//                    .setOnResponse((HttpResult res) -> {
-//                    // 得到目标数据
-//                    HttpResult.Body boy = res.getBody();
-//                    Log.i("htpps",boy.toString());
-//                    })
-//                    .get();
