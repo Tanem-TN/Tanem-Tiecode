@@ -30,3 +30,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Tiecode论坛"
 include ':app'
+include ':library'

@@ -23,6 +23,7 @@ public class PagerAdapterTwo extends RecyclerView.Adapter {
         private Context mContext;
         private int size = 1;
         public PagerAdapterTwo(Context mContext){
+            this.mContext = mContext;
         }
 
 

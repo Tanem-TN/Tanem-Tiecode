@@ -20,10 +20,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeWidth="0dp">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -89,7 +88,209 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/帖子标题"
                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/帖子摘要">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/MaterialCardView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="5dp"
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView04"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView02"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView05"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView03"
+                            app:layout_constraintStart_toEndOf="@+id/imageView01"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView06"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView02"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView07"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView05"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView01"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView08"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView06"
+                            app:layout_constraintStart_toEndOf="@+id/imageView04"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView02"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView09"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView05"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView03"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView07"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView08"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView04"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView09"
+                            app:layout_constraintStart_toEndOf="@+id/imageView07"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView05"
+                            app:srcCompat="@drawable/dataset" />
+
+                        <ImageView
+                            android:id="@+id/imageView09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView08"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView06"
+                            app:srcCompat="@drawable/dataset" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/点赞"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/信息"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/twotone_thumb_up_alt_24" />
+
+                <ImageView
+                    android:id="@+id/信息"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/分享"
+                    app:layout_constraintStart_toEndOf="@+id/点赞"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/twotone_mail_24" />
+
+                <ImageView
+                    android:id="@+id/分享"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/信息"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/twotone_send_24" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/点赞"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/信息"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/分享"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

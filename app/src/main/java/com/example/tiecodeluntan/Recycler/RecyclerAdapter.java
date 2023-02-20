@@ -3,28 +3,29 @@ package com.example.tiecodeluntan.Recycler;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.tiecodeluntan.R;
-import com.example.tiecodeluntan.gridImageview.GridImageView;
-import com.example.tiecodeluntan.gridImageview.ImageInfo;
-import com.example.tiecodeluntan.gridImageview.RoundImageView;
+import com.example.tiecodeluntan.glide.GlideTool;
 import com.example.tiecodeluntan.hashmaptool.哈希表;
+import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import cc.shinichi.library.ImagePreview;
 import cn.zhxu.okhttps.HTTP;
 import cn.zhxu.okhttps.HttpResult;
 
@@ -39,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
 
     public void 数据() {
+        集合1.clear();
         HTTP okhttp = HTTP.builder().build();
         okhttp.async("http://101.33.227.148/api")
                 .setOnResponse((HttpResult res) -> {
@@ -95,6 +97,71 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         holder.用户名.setText(hxb1.取项目("用户名").toString());
         holder.帖子标题.setText(hxb1.取项目("标题").toString());
         holder.帖子摘要.setText(hxb1.取项目("帖子摘要").toString());
+        九宫格图片框(holder,hxb1);
+    }
+
+    public void 九宫格图片框(RecyclerViewHolderTool holder,哈希表 hxb1){
+        String[] imageUrls = hxb1.取项目("图片").toString().split(",");
+        int imageCount = imageUrls.length;
+        ImageView[] imageViews = new ImageView[]{holder.图片1, holder.图片2, holder.图片3, holder.图片4, holder.图片5, holder.图片6, holder.图片7, holder.图片8, holder.图片9};
+// 根据图片数量调整显示的图片框个数
+        if (imageCount < 3) {
+            imageCount = 1;
+        } else if (imageCount < 6) {
+            imageCount = 3;
+        } else if (imageCount < 9) {
+            imageCount = 6;
+        } else {
+            imageCount = 9;
+        }
+
+// 设置图片框的可见性
+        for (int i = 0; i < imageCount; i++) {
+            ImageView imageView = imageViews[i];
+            imageView.setVisibility(View.VISIBLE);
+
+        }
+
+// 显示图片
+        for (int i = 0; i < imageCount; i++) {
+            String imageUrl = imageUrls[i];
+            ImageView imageView = imageViews[i];
+            List<String> a =new  ArrayList<>();
+            a.add(imageUrl);
+            GlideTool.加载图片(imageView, imageUrl, null, null);
+            int finalI = i;
+            imageView.setOnClickListener(view -> {
+                ImagePreview
+                        .getInstance()
+                        // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
+                        .setContext(imageView.getContext())
+
+                        // 设置从第几张开始看（索引从0开始）
+                        .setIndex(0)
+
+                        //=================================================================================================
+                        // 有三种设置数据集合的方式，根据自己的需求进行三选一：
+                        // 1：第一步生成的imageInfo List
+
+                        // 2：直接传url List
+//                        .setImageList(a)
+
+                        .setShowErrorToast(true)
+                        .setImage(imageUrl)
+                        // 3：只有一张图片的情况，可以直接传入这张图片的url
+                        //.setImage(String image)
+                        //=================================================================================================
+
+                        // 开启预览
+                        .start();
+            });
+        }
+
+// 隐藏多余的图片框
+        for (int i = imageCount; i < 9; i++) {
+            ImageView imageView = imageViews[i];
+            imageView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -102,20 +169,38 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return 集合1.size();
     }
 
+    @SuppressWarnings("NonAsciiCharacters")
     public static class RecyclerViewHolderTool extends RecyclerView.ViewHolder {
         TextView 用户名;
         TextView 帖子标题;
         TextView 帖子摘要;
-        GridImageView 九宫格;
-        ArrayList 集合 = new ArrayList<>();
-
-        private boolean isMethodExecuted = false;
+        ImageView 图片1;
+        ImageView 图片2;
+        ImageView 图片3;
+        ImageView 图片4;
+        ImageView 图片5;
+        ImageView 图片6;
+        ImageView 图片7;
+        ImageView 图片8;
+        ImageView 图片9;
+        MaterialCardView 卡片布局1;
+        ArrayList<Object> 集合 = new ArrayList<>();
 
         RecyclerViewHolderTool(@NonNull View itemView) {
             super(itemView);
             用户名 = itemView.findViewById(R.id.用户名);
             帖子标题 = itemView.findViewById(R.id.帖子标题);
             帖子摘要 = itemView.findViewById(R.id.帖子摘要);
+            图片1 = itemView.findViewById(R.id.imageView01);
+            图片2 = itemView.findViewById(R.id.imageView02);
+            图片3 = itemView.findViewById(R.id.imageView03);
+            图片4 = itemView.findViewById(R.id.imageView04);
+            图片5 = itemView.findViewById(R.id.imageView05);
+            图片6 = itemView.findViewById(R.id.imageView06);
+            图片7 = itemView.findViewById(R.id.imageView07);
+            图片8 = itemView.findViewById(R.id.imageView08);
+            图片9 = itemView.findViewById(R.id.imageView09);
+            卡片布局1 = itemView.findViewById(R.id.MaterialCardView1);
         }
 
     }

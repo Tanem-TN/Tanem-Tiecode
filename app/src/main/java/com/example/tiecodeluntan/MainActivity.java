@@ -2,6 +2,7 @@ package com.example.tiecodeluntan;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.tiecodeluntan.GlobalClass.安卓窗口;
 import com.example.tiecodeluntan.Pager.PagerAdapter;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 @SuppressWarnings("NonAsciiCharacters")
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Pager();
         setOnItemSelectedListener();
         沉浸模式();
+        安卓窗口.切换窗口(this,发帖窗口.class);
     }
 
     public void Pager() {
@@ -91,11 +95,12 @@ public class MainActivity extends AppCompatActivity {
             this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         }
     }
-    public void 沉浸模式(){
+    public  void 沉浸模式(){
         状态栏字体黑色(true);
         导航栏颜色();
         状态栏颜色();
     }
+    @SuppressLint({"DiscouragedApi", "InternalInsetResource"})
     public static int 取状态栏高度(Context mContext){
         if (Build.VERSION.SDK_INT < 29) {
             try {
@@ -117,6 +122,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         params.height = 高度;
+        view.setLayoutParams(params);
+    }
+    public static void 设置布局宽度(View view,int 宽度){
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        if (params == null) {
+            return;
+        }
+        params.width = 宽度;
         view.setLayoutParams(params);
     }
 }

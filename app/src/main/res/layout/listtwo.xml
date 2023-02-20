@@ -3,10 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recycler1"
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/SmartRefreshLayout1"
         android:layout_width="match_parent"
-        android:nestedScrollingEnabled="true"
         android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recycler1"
+            android:layout_width="match_parent"
+            android:nestedScrollingEnabled="true"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
