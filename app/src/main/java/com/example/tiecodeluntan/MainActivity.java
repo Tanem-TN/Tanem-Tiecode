@@ -5,18 +5,19 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.tiecodeluntan.GlobalClass.安卓窗口;
 import com.example.tiecodeluntan.Pager.PagerAdapter;
 import com.example.tiecodeluntan.hybbs.Hybbs;
-import com.example.tiecodeluntan.login.Login;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.concurrent.CountDownLatch;
 
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -40,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         Pager();
         setOnItemSelectedListener();
         沉浸模式();
-        安卓窗口.切换窗口(this, Login.class);
-        Hybbs.login();
+//        安卓窗口.切换窗口(this, Login.class);
+
+        Log.i("测试",Hybbs.login("Tanemddd","xz-b5dh9v@tempmail.cn","12345678","12345678","EE354E"));
     }
 
     public void Pager() {
