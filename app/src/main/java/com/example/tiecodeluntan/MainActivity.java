@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.tiecodeluntan.Pager.PagerAdapter;
 import com.example.tiecodeluntan.hybbs.Hybbs;
+import com.example.tiecodeluntan.hybbs.HybbsSpf;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HybbsSpf.初始化(this, "HYBBS");
         setContentView(R.layout.activity_main);
         bottBar = findViewById(R.id.bottomAppBar1);
         vPager = findViewById(R.id.Pager1);
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         沉浸模式();
 //        安卓窗口.切换窗口(this, Login.class);
 
-        Log.i("测试",Hybbs.login("Tanemddd","xz-b5dh9v@tempmail.cn","12345678","12345678","EE354E"));
+        Log.i("测试",Hybbs.login("Tanem","lzf520.1314.9420"));
     }
 
     public void Pager() {
