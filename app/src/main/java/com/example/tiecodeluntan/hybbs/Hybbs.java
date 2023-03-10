@@ -1,10 +1,9 @@
 package com.example.tiecodeluntan.hybbs;
 
 import android.content.Context;
+import android.os.Environment;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
+import java.io.File;
 import java.util.concurrent.CountDownLatch;
 
 import cn.zhxu.okhttps.HTTP;
@@ -14,12 +13,13 @@ public class Hybbs {
 
     static String url = "http://101.33.227.148/";
     static final String[] adduserprompt = {"两次密码不一致", "账号已经存在!", "邮箱已经存在!", "邮箱验证码已经过期,请获取新邮箱验证码!", "Email 格式不对", "账号注册成功!"};
-    static final String[] loginprompt = {"账号不存在!", "密码错误!","登录成功!"};
+    static final String[] loginprompt = {"账号不存在!", "密码错误!", "登录成功!"};
 
     public Hybbs(Context mContext) {
 
     }
 
+    //注册
     public static String adduser(String user, String email, String pass1, String pass2, String codec) {
         final CountDownLatch latch = new CountDownLatch(1);
         final String[] cc = {""};
@@ -34,10 +34,10 @@ public class Hybbs {
                 .addBodyPara("pass2", pass2)
                 .addBodyPara("codec", codec)
                 .setOnResponse((HttpResult res) -> {
-            HttpResult.Body boy = res.getBody();
-            cc[0] = boy.toString();
-            latch.countDown();
-        }).post();
+                    HttpResult.Body boy = res.getBody();
+                    cc[0] = boy.toString();
+                    latch.countDown();
+                }).post();
         try {
             latch.await();
         } catch (InterruptedException e) {
@@ -62,16 +62,19 @@ public class Hybbs {
 
     }
 
+    //登录
     public static String login(String user, String pass) {
         final CountDownLatch latch = new CountDownLatch(1);
-        final String[] cc = {""};
+        String[] cc = {""};
+        final String[] Cookie = {""};
         HTTP okhttp = HTTP.builder().build();
-        okhttp.async(url + "api/login")
+        okhttp.async(url + "?user/login.html")
                 .addBodyPara("user", user)
                 .addBodyPara("pass", pass)
                 .setOnResponse((HttpResult res) -> {
                     HttpResult.Body boy = res.getBody();
                     cc[0] = boy.toString();
+                    Cookie[0] = res.getHeaders("Set-Cookie").get(0);
                     latch.countDown();
                 }).post();
         try {
@@ -83,12 +86,59 @@ public class Hybbs {
             return loginprompt[0];
         } else if (cc[0].contains(loginprompt[1])) {
             return loginprompt[1];
-        }else {
-            JsonObject jsonObject = JsonParser.parseString(cc[0]).getAsJsonObject();
-            JsonObject cookie = JsonParser.parseString(String.valueOf(jsonObject.get("data"))).getAsJsonObject();
-            HybbsSpf.add("Cookie",String.valueOf(cookie.get("cookie")));
-            return HybbsSpf.get("Cookie");
+        } else {
+            HybbsSpf.add("Cookie", Cookie[0]);
+            return cc[0];
         }
     }
+
+    //判断用户是否投票
+    public static String recode(String pid) {
+        final CountDownLatch latch = new CountDownLatch(1);
+        final String[] cc = {""};
+        HTTP okhttp = HTTP.builder()
+                .build();
+        okhttp.async(url + "api/codec")
+                .addHeader("Cookie", HybbsSpf.get("Cookie"))
+                .addBodyPara("pid", pid)
+                .setOnResponse((HttpResult res) -> {
+                    HttpResult.Body boy = res.getBody();
+                    cc[0] = boy.toString();
+                    latch.countDown();
+                }).post();
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return cc[0];
+    }
+
+    //文件上传
+    public static String postimg(String url) {
+        final CountDownLatch latch = new CountDownLatch(1);
+        final String[] cc = {""};
+        HTTP okhttp = HTTP.builder()
+                .build();
+        okhttp.async(url + "?post/upload.html")
+                .addHeader("Connection", "Keep-Alive")
+                .addHeader("Cache-Control", "no-cache")
+                .addHeader("Accept", "application/json, text/javascript, */*; q=0.01")
+                .addHeader("Accept-Encoding", "gzip, deflate")
+                .addHeader("Cookie", HybbsSpf.get("Cookie"))
+                .addFilePara("photo", url)
+                .setOnResponse((HttpResult res) -> {
+                    HttpResult.Body boy = res.getBody();
+                    cc[0] = boy.toString();
+                    latch.countDown();
+                }).post();
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return cc[0];
+    }
+
 
 }
