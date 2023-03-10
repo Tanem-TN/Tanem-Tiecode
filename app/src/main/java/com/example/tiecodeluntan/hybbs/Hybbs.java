@@ -3,6 +3,10 @@ package com.example.tiecodeluntan.hybbs;
 import android.content.Context;
 import android.os.Environment;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.File;
 import java.util.concurrent.CountDownLatch;
 
@@ -115,7 +119,7 @@ public class Hybbs {
     }
 
     //文件上传
-    public static String postimg(String url) {
+    public static String postimg(String imgurl) {
         final CountDownLatch latch = new CountDownLatch(1);
         final String[] cc = {""};
         HTTP okhttp = HTTP.builder()
@@ -126,10 +130,17 @@ public class Hybbs {
                 .addHeader("Accept", "application/json, text/javascript, */*; q=0.01")
                 .addHeader("Accept-Encoding", "gzip, deflate")
                 .addHeader("Cookie", HybbsSpf.get("Cookie"))
-                .addFilePara("photo", url)
+                .addFilePara("photo", imgurl)
                 .setOnResponse((HttpResult res) -> {
                     HttpResult.Body boy = res.getBody();
-                    cc[0] = boy.toString();
+                    JsonObject jsonObject = JsonParser.parseString(boy.toString()).getAsJsonObject();
+                    String filePath = jsonObject.get("file_path").getAsString();
+                    String success = jsonObject.get("success").getAsString();
+                    if (success.contains("true")){
+                        cc[0] = filePath;
+                    }else {
+                        cc[0] = "上传失败可能图片超过了3mb";
+                    }
                     latch.countDown();
                 }).post();
         try {
