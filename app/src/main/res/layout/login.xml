@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"></LinearLayout>
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -27,7 +27,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/twotone_chevron_left_24" />
+            app:srcCompat="@drawable/twotone_chevron_left_24"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,12 +36,14 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-172dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/textView7"
@@ -54,7 +57,8 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText,SpUsage" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -67,43 +71,73 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                tools:ignore="HardcodedText,SpUsage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="账号"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="账号"></com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+                tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+        </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout1"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            app:cardBackgroundColor="#FF0000"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:ignore="MissingConstraints" />
 
-            <com.google.android.material.textfield.TextInputEditText
+        <androidx.cardview.widget.CardView
+            android:id="@+id/blurCard"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="@dimen/dp_200"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/dp_50"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="@dimen/dp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+            <!--实时模糊视图，毛玻璃效果-->
+            <io.github.lumyuan.ux.groundglass.widget.GroundGlassView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="邮箱"></com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+                app:blurRadius="@dimen/dp_35"
+                app:downSampleFactor="4"
+                app:overlayColor="#AAFFFFFF" />
+
+        </androidx.cardview.widget.CardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

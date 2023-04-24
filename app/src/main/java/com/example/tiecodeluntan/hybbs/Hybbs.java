@@ -150,6 +150,39 @@ public class Hybbs {
         }
         return cc[0];
     }
+   
+    //发布帖子
+//    public static String postimg(String imgurl) {
+//        final CountDownLatch latch = new CountDownLatch(1);
+//        final String[] cc = {""};
+//        HTTP okhttp = HTTP.builder()
+//                .build();
+//        okhttp.async(url + "?post/upload.html")
+//                .addHeader("Connection", "Keep-Alive")
+//                .addHeader("Cache-Control", "no-cache")
+//                .addHeader("Accept", "application/json, text/javascript, */*; q=0.01")
+//                .addHeader("Accept-Encoding", "gzip, deflate")
+//                .addHeader("Cookie", HybbsSpf.get("Cookie"))
+//                .addFilePara("photo", imgurl)
+//                .setOnResponse((HttpResult res) -> {
+//                    HttpResult.Body boy = res.getBody();
+//                    JsonObject jsonObject = JsonParser.parseString(boy.toString()).getAsJsonObject();
+//                    String filePath = jsonObject.get("file_path").getAsString();
+//                    String success = jsonObject.get("success").getAsString();
+//                    if (success.contains("true")){
+//                        cc[0] = filePath;
+//                    }else {
+//                        cc[0] = "上传失败可能图片超过了3mb";
+//                    }
+//                    latch.countDown();
+//                }).post();
+//        try {
+//            latch.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return cc[0];
+//    }
 
 
 }

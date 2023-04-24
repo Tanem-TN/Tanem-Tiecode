@@ -19,11 +19,7 @@ import com.example.tiecodeluntan.hybbs.HybbsSpf;
 import com.example.tiecodeluntan.login.Login;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.concurrent.CountDownLatch;
-
-
-@SuppressWarnings("NonAsciiCharacters")
 public class MainActivity extends AppCompatActivity {
     public static BottomAppBar bottBar;
     public static ViewPager2 vPager;
@@ -45,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
         Pager();
         setOnItemSelectedListener();
         沉浸模式();
-        String[] 权限 = {"android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE"};
-       this.requestPermissions(权限,0);
-        安卓窗口.切换窗口(this, 发帖窗口.class);
+        安卓窗口.申请所有权限(this,this);
+//        安卓窗口.切换窗口(this, Login.class);
 //        Hybbs.login("Tanem","lzf520.1314.9420");
 //        Log.i("测试",Hybbs.postimg("1"));
 
